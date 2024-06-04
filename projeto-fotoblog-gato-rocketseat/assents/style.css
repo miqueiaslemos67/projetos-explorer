@@ -1,0 +1,274 @@
+@charset "UTF-08";
+
+/* configurações gerais*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Variaveis para facilitar */
+:root {
+  --brand-primary: hsl(195, 46%, 40%);
+  --title-primary: hsl(240, 6%, 13%);
+  --text-primary: hsl(240, 5%, 7%);
+
+  --text-base: 1rem;
+  --text-sm: 0.875rem;
+}
+
+/* Fonts e cor para todo o html e input...*/
+html,
+input {
+  font: 400 var(--text-base) / 160% "Mulish", sans-serif;
+  color: var(--text-primary);
+}
+
+h1,
+h2,
+h3 {
+  font-size: 1rem;
+  color: var(--title-primary);
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 160%;
+}
+
+h3 {
+  font-size: 1.125rem;
+  line-height: 100%;
+}
+
+/* config. gerais da imagem principal do gato para ficar alinhado 100% da caixa */
+img {
+  width: 100%;
+  height: auto;
+
+  display: block;
+  transition: all 300ms;
+}
+ img:hover {
+  scale: 1.04;
+ }
+
+.text-sm {
+  font-size: var(--text-sm);
+}
+
+.container {
+  padding-inline: 1.25rem;
+  max-width: calc(24rem + (1.25rem * 2));
+  margin-inline: auto;
+}
+
+/* cor de fundo do header...*/
+header {
+  background-color: var(--brand-primary);
+  padding: 0.8rem 1.75rem;
+}
+
+/* alinhamento da icon do site (pata do gato) */
+header a {
+  line-height: 0;
+}
+
+/* Container (estilização do caixa com o avatar, logo da pata do gato... */
+header .container {
+  max-width: 23.375rem;
+  margin-inline: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.625rem;
+}
+
+header img:last-child {
+  width: 2.625rem;
+  height: 2.625rem;
+}
+
+/* caixa de pesquisa*/
+header form input {
+  background-color: rgb(255 255 255 / 0.2);
+  border: none;
+  padding: 0.75rem 0.875rem;
+  border-radius: 0.25rem;
+
+  font-weight: 600;
+  line-height: 100%;
+
+  color: white;
+}
+
+/* Cor do placeholder (texto de exemplo dentro do input (caixa de pesquisa) na cor branca) */
+header form input::placeholder {
+  color: white;
+}
+
+/* Main */
+
+main h1 {
+  margin-top: 1rem;
+}
+
+main .buttons {
+  margin-top: 0.5rem;
+}
+
+main p {
+  margin-top: 1rem;
+}
+
+/* all: unset; retira tudo que estaria no button */
+button {
+  all: unset;
+
+  transition: all 300ms; /* config de suavidade quando passar o mouse por cima após o transform */
+}
+
+/* config. de quando eu passar o mouse por cima do botão ele aumenta e rotação dos botões */
+button:hover {
+  transform: scale(1.1) rotate(10deg);
+}
+
+/* Aside (Config. do artigo onde contem as imagens dos gato e conteúdos */
+
+aside {
+  margin-top: 2rem;
+}
+
+aside section {
+  margin-top: 1rem;
+  display: grid;
+  gap: 2rem;
+}
+
+/* usando grid para organizar as imagens e cont..*/
+section article {
+  display: grid;
+
+  grid-template-columns: 9.375rem 1fr;
+  gap: 1rem;
+}
+
+/* Margem do topo do parágrafo da sessão do artigo */
+section article p {
+  margin-top: 0.9rem;
+}
+
+/* Borda das imgs pequenas */
+article img {
+  border-radius: 5px;
+}
+
+/* Footer */
+footer {
+  background-color: var(--brand-primary);
+  color: white;
+  text-align: center;
+  padding-block: 1.5rem;
+
+  margin-top: 2.5rem;
+}
+
+/* Config. para DESKTOP*/
+@media (width > 80rem) {
+  img {
+    border-radius: 54px;
+  }
+
+  #app {
+    display: grid;
+    grid-template-areas:
+      "header header"
+      "main aside"
+      "footer footer";
+
+      /* espaços entre a img principal e o header*/
+      gap: 2.5rem 2rem;
+  }
+  header .container, .container {
+    max-width: initial;
+    padding: initial;
+    margin: initial;
+  }
+
+  header {
+    grid-area: header;
+  }
+
+  header .container {
+    max-width: 76rem;
+    margin-inline: auto;
+  }
+
+  header form {
+    flex: 1;
+  }
+
+  header form input {
+    width: 100%;
+  }
+
+  main {
+    grid-area: main;
+  }
+
+  /* usando main.container junto e não ( main .container) Força diretamente na config.*/
+  /* Margin-left usado para da margem na img principal a esquerda */
+  main.container {
+    max-width: 50rem;
+    margin-left: auto;
+  }
+
+  aside {
+    grid-area: aside;
+  }
+
+  /* usando aside.container junto e não ( aside .container) Força diretamente na config.*/
+  aside.container {
+    max-width: 24rem;
+  }
+
+  footer {
+    grid-area: footer;
+  }
+}
+
+/* Config. de animação do header (caixa que contem a logo, avatar e caixa de pesquisa */
+
+
+header {
+  animation: fromTop 800ms 200ms backwards;
+}
+
+@keyframes fromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+main, aside {
+  animation: fromBottom 800ms 200ms backwards;
+}
+@keyframes fromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+}
+
+footer {
+  animation: fromFooter 800ms 200ms backwards;
+}
+@keyframes fromFooter {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
